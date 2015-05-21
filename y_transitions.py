@@ -31,7 +31,7 @@ if not os.path.exists(Figure_PDFDirectory):
 
 #Create directory for Csv files
 CSV_Directory = Folder_Name + 'CSV/'
-name_csv_file = 'Frames_moved_between_midline.csv'
+name_csv_file = 'Crossed_Frames.csv'
 if not os.path.exists(CSV_Directory):
         os.makedirs(CSV_Directory) 
         
