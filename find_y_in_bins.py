@@ -26,6 +26,7 @@ ybin_end = [80, 180]
 from numpy import array, where, logical_and, size, zeros, int, vstack
 import pandas as pd 
 import os 
+from copy import copy
 filesep = os.path.sep
 from matplotlib.backends.backend_pdf import PdfPages
 import seaborn as sns
@@ -128,7 +129,7 @@ for index, Text_File_Name in enumerate(Txt_Files_in_Folder):
     
     ax3.set_xticklabels(labels)
     plt.xlim((-0.1,1.1))
-    Legend_String = Bins
+    Legend_String = copy(Bins)
     Legend_String.insert(0,'All Frames')
     ax2.legend(Legend_String, loc='lower center', bbox_to_anchor=(0.5,-0.5), fancybox=True, shadow = True)
 
