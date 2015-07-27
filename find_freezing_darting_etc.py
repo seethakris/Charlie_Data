@@ -127,6 +127,8 @@ for index, Text_File_Name in enumerate(Txt_Files_in_Folder):
     ########## Save Data for individual fish ##############
     Fish_Speed_Data = pd.DataFrame({'Bin_Number':Bin_Number, 'Speed (pixel/bin)':Speed_bin_pixel,\
     'Speed(pixel/mm)':Speed_bin_mm, 'Pause':Paused_bins, 'Freezing':Froze_bins})
+    Fish_Speed_Data = Fish_Speed_Data.reindex(columns=['Bin_Number', 'Speed (pixel/bin)', 'Speed(pixel/mm)',\
+    'Pause','Freezing'])
     Fish_Speed_Data.to_csv(CSV_Directory+csv_file_per_fish)
 
 ############ Save data for all fish #############################
