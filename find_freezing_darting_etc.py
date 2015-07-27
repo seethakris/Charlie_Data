@@ -138,23 +138,26 @@ All_Fish_Speed_Data = All_Fish_Speed_Data.reindex(columns=['Fish_Name', 'Darting
 All_Fish_Speed_Data.to_csv(CSV_Directory+'Speed_Parameters_AllFish.csv')
 
 ########## Plot all data ######################################
+sns.set_context('poster')
 with sns.axes_style('darkgrid'):
     colors = ["pale red", "medium green", "denim blue"]
     ################### Arrange for plotting #######################
     name_file = 'Speed_Parameters_AllFish_Plot'    
     pp = PdfPages(Figure_PDFDirectory+name_file+'.pdf')          
     sns.set_context("poster")  
+    ax1 = plt.figure(figsize=(5,8))
     for ii in xrange(0, size(Txt_Files_in_Folder)):
         for jj in xrange(1,4):
             ax1 = plt.plot(ii, All_Fish_Speed_Data.ix[ii,jj],\
             's', markersize=20, markeredgecolor='white', \
             markeredgewidth=2, markerfacecolor=sns.xkcd_rgb[colors[jj-1]])
-            plt.xticks(arange(0, size(Txt_Files_in_Folder)+1, 1.0),\
-            Txt_Files_in_Folder, rotation = 'vertical')
-            plt.xlim(-1, size(Txt_Files_in_Folder))
-
-            plt.legend(['Darting', 'Pausing', 'Freezing'])
-    
+        
+        plt.xticks(arange(0, size(Txt_Files_in_Folder)+1, 1.0),\
+        [ii[:-4] for ii in Txt_Files_in_Folder], rotation = 'vertical', fontsize=12)
+        plt.xlim(-1, size(Txt_Files_in_Folder))
+        plt.legend(['Darting', 'Pausing', 'Freezing'])
+        
+    plt.tight_layout()
     ax1 = plt.gcf()
     plt.show()
     pp.savefig(ax1) #Save as pdf
